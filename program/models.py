@@ -14,7 +14,16 @@ class Client(models.Model):
         return details
 
 class Indication(models.Model):
-    source_cpf = BRCPFField('CPF do usuário indicador', blank=False, unique=False)
+    PENDING_STATUS = 1
+    ACCEPT_STATUS = 2
+    CANCELED_STATUS = 3
+    STATUS_CHOICES = (
+        (PENDING_STATUS, 'Pendente'),
+        (ACCEPT_STATUS, 'Aceita'),
+        (CANCELED_STATUS, 'Cancelada'),
+    )
+    status = models.IntegerField(choices=STATUS_CHOICES, default=PENDING_STATUS)
+    source_cpf = ('CPF do usuário indicador', blank=False, unique=False)
     target_cpf = BRCPFField('CPF do usuário indicado', blank=False, unique=False)
     date = models.DateTimeField(auto_now_add=True)
 

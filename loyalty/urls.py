@@ -19,8 +19,8 @@ from program.views import ClientViewSet, IndicationViewSet
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register('program', viewset=ClientViewSet)
-router.register('program', viewset=IndicationViewSet)
+router.register('program/Client', viewset=ClientViewSet)
+router.register('program/Indication', viewset=IndicationViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
