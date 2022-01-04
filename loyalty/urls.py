@@ -21,7 +21,6 @@ from rest_framework import routers
 router = routers.DefaultRouter()
 router.register('Client/', viewset=ClientViewSet)
 router.register('Indication/', viewset=IndicationViewSet)
-#router.register('create-indication/', CreateIndication.as_view())
 
 urlpatterns = [
     path('admin/', admin.site.urls),

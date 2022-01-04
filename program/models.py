@@ -1,6 +1,8 @@
+from datetime import datetime
+
 from django.db import models
 from localflavor.br.models import BRCPFField
-#from phonenumber_field.modelfields import PhoneNumberField
+from phonenumber_field.modelfields import PhoneNumberField
 from localflavor.exceptions import ValidationError
 
 
@@ -9,8 +11,12 @@ def validate_cpf_indicated(cpf_value):
         raise ValidationError('cpf invalido')
 
 def validate_exists_another_indication(cpf_value):
-    if Indication.objects.filter(indicated_cpf=cpf_value).exists():
-        raise ValidationError('cpf invalido')
+    indicated = Indication.objects.filter(indicated_cpf=cpf_value).order_by('creation_date')[0]
+    print(indicated)
+    if indicated:
+        delta = datetime.date.today() - indicated.creation_date #TODO fix it
+        if delta.days < 30:
+            raise ValidationError('cpf ja indicado')
 
 class Client(models.Model):
     name = models.CharField(max_length=255, blank=False, verbose_name='Nome')
@@ -37,7 +43,8 @@ class Indication(models.Model):
     client_cpf = models.ForeignKey(
         Client, on_delete=models.DO_NOTHING, related_name='client_cpf',
         blank=False, unique=False, verbose_name='Cliente')
-    indicated_cpf = BRCPFField('CPF indicado', blank=False, unique=False, validators=[validate_cpf_indicated])
+    indicated_cpf = BRCPFField('CPF indicado', blank=False, unique=False, validators=[validate_cpf_indicated,
+                                                                                      validate_exists_another_indication])
     creation_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
