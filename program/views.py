@@ -19,4 +19,4 @@ class IndicationViewSet(viewsets.ModelViewSet):
     """
 class AcceptIndicationViewSet(viewsets.ModelViewSet):
     queryset = Indication.objects.all()
-"""
+"""#TODO fix it

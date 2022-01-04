@@ -16,4 +16,4 @@ class IndicationSerializer(serializers.ModelSerializer):
 """class AcceptIndicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Indication
-        fields = ['status', ]"""
+        fields = ['status', ]"""#TODO fix it
