@@ -19,10 +19,11 @@ from program.views import ClientViewSet, IndicationViewSet
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register('program/Client', viewset=ClientViewSet)
-router.register('program/Indication', viewset=IndicationViewSet)
+router.register('Client/', viewset=ClientViewSet)
+router.register('Indication/', viewset=IndicationViewSet)
+#router.register('create-indication/', CreateIndication.as_view())
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls))
+    path('', include(router.urls)),
 ]
