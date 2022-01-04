@@ -11,10 +11,9 @@ def validate_cpf_indicated(cpf_value):
         raise ValidationError('cpf invalido')
 
 def validate_exists_another_indication(cpf_value):
-    indicated = Indication.objects.filter(indicated_cpf=cpf_value).order_by('creation_date')[0]
-    print(indicated)
+    indicated = Indication.objects.filter(indicated_cpf=cpf_value).order_by('creation_date')
     if indicated:
-        delta = datetime.date.today() - indicated.creation_date #TODO fix it
+        delta = datetime.now().today() - indicated.first().creation_date.date()
         if delta.days < 30:
             raise ValidationError('cpf ja indicado')
 
