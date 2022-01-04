@@ -1,0 +1,13 @@
+asgiref==3.4.1
+Django==4.0
+django-localflavor==3.1
+django-phonenumber-field==6.0.0
+djangorestframework==3.13.1
+localflavor==1.9
+phonenumbers==8.12.40
+phonenumberslite==8.12.40
+python-stdnum==1.17
+pytz==2021.3
+six==1.16.0
+sqlparse==0.4.2
+tzdata==2021.5
