@@ -9,6 +9,7 @@ from localflavor.exceptions import ValidationError
 def validate_cpf_indicated(cpf_value):
     if Client.objects.filter(cpf=cpf_value).exists():
         raise ValidationError('cpf invalido')
+ #TODO ajustar retorno das exceções
 
 def validate_exists_another_indication(cpf_value):
     indicated = Indication.objects.filter(indicated_cpf=cpf_value).order_by('-creation_date')
@@ -20,8 +21,7 @@ def validate_exists_another_indication(cpf_value):
 def validate_indication_accepted(cpf_value):
     indicated = Indication.objects.filter(indicated_cpf=cpf_value)
     if not indicated:
-        raise ValidationError('CPF não recebeu indicação')
-
+        raise ValidationError('Não existe indicação para este CPF')
 
 class Client(models.Model):
     name = models.CharField(max_length=255, blank=False, verbose_name='Nome')
