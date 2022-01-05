@@ -12,8 +12,3 @@ class IndicationSerializer(serializers.ModelSerializer):
         model = Indication
         fields = '__all__'
         read_only_fields = ['status']
-
-"""class AcceptIndicationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Indication
-        fields = ['status', ]"""#TODO fix it

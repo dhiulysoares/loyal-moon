@@ -15,8 +15,3 @@ class ClientViewSet(viewsets.ModelViewSet):
 class IndicationViewSet(viewsets.ModelViewSet):
     queryset = Indication.objects.all()
     serializer_class = IndicationSerializer
-
-    """
-class AcceptIndicationViewSet(viewsets.ModelViewSet):
-    queryset = Indication.objects.all()
-"""#TODO fix it
